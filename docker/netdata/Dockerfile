@@ -24,7 +24,7 @@ RUN apk -U upgrade && \
     rm -rf /var/cache/apk/*
 
 # Healthcheck
-HEALTHCHECK --retries=10 CMD curl -s -XGET 'http://127.0.0.1:64301'
+HEALTHCHECK --retries=10 CMD curl -s -XGET 'http://127.0.0.1:19999'
 
 # Start netdata 
 WORKDIR /
