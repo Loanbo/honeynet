@@ -5,9 +5,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing && apt-get -y upgrade
 
 # Install dependencies
-RUN apt-get -y \
-    libkrb5-dev\
-    python-support\
+RUN apt-get install -y \
+    libkrb5-dev \
+    python-support \
     install python-pip \
     python-imaging \
     python-setuptools \
