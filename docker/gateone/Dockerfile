@@ -1,5 +1,5 @@
 # gateone Dockerfile
-
+FROM ubuntu
 # Ensure everything is up-to-date
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing && apt-get -y upgrade
