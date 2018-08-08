@@ -8,17 +8,15 @@ ENV GATEONE_REPO_URL https://github.com/liftoff/GateOne.git
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing && apt-get -y upgrade
 # Install dependencies
-RUN apt-get install -y \
-    libkrb5-dev \
-    python-pip \
-    python-pil \
+RUN apt-get -y \
+    install python-pip \
     python-imaging \
     python-setuptools \
     python-mutagen \
     python-pam \
     python-dev \
+    git \
     telnet \
-    wget \
     openssh-client && \
     apt-get -y clean && \
     apt-get -q -y autoremove
