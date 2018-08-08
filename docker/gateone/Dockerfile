@@ -7,8 +7,7 @@ RUN apt-get update --fix-missing && apt-get -y upgrade
 # Install dependencies
 RUN apt-get install -y \
     libkrb5-dev \
-    python-support \
-    install python-pip \
+    python-pip \
     python-imaging \
     python-setuptools \
     python-mutagen \
