@@ -11,8 +11,7 @@ RUN apk -U upgrade && \
     cd netdata && \
     ./netdata-installer.sh --dont-wait --dont-start-it && \
     sed -i "s/#local:/local:/" /etc/netdata/python.d/elasticsearch.conf && \
-    sed -i "s/# host: '127.0.0.1'/host: '127.0.0.1'/" /etc/netdata/python.d/elasticsearch.conf && \
-    sed -i "s/port: '9200'/port: '64298'/" /etc/netdata/python.d/elasticsearch.conf && \
+    sed -i "s/# host: '127.0.0.1'/host: '0.0.0.0'/" /etc/netdata/python.d/elasticsearch.conf && \
     sed -i "s/# cluster_health: True/cluster_health: True/" /etc/netdata/python.d/elasticsearch.conf && \
     sed -i "s/# cluster_stats: True/cluster_stats: True/" /etc/netdata/python.d/elasticsearch.conf && \
     sed -i 's/SEND_EMAIL="YES"/SEND_EMAIL="NO"/' /etc/netdata/health_alarm_notify.conf && \
@@ -29,4 +28,4 @@ HEALTHCHECK --retries=10 CMD curl -s -XGET 'http://127.0.0.1:64301'
 
 # Start netdata 
 WORKDIR /
-CMD ["/usr/sbin/netdata","-D","-s","/host","-i","127.0.0.1","-p","64301"]
+CMD ["/usr/sbin/netdata","-D","-s","/host","-i","0.0.0.0","-p","19999"]
