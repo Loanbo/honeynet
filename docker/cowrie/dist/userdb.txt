@@ -1,0 +1,3 @@
+root:0:password
+root:x:root
+admin:x:admin
