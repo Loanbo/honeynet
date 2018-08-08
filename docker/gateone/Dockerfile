@@ -1,9 +1,12 @@
 # gateone Dockerfile
 FROM ubuntu
+MAINTAINER Dan McDougall <daniel.mcdougall@liftoffsoftware.com>
+
+ENV GATEONE_REPO_URL https://github.com/liftoff/GateOne.git
+
 # Ensure everything is up-to-date
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing && apt-get -y upgrade
-
 # Install dependencies
 RUN apt-get install -y \
     libkrb5-dev \
