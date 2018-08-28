@@ -5,8 +5,8 @@ MAINTAINER MO
 ADD disk/ /root/dist/
 
 # Setup env and apt
-RUN apt-get update -y && \
-    apt-get install -y git logrotate nodejs npm supervisor wget openjdk-8-jdk openjdk-8-jre-headless python-pip && \
+RUN apk -U upgrade && \
+    apk add bash curl git libc6-compat libzmq openjdk8-jre procps nodejs wget && \
     
     
 # Get and install packages   
