@@ -58,18 +58,16 @@ RUN apk -U upgrade && \
 
 # Setup user, groups and configs
     #ES
-    addgroup -g 2000 elasticsearch && \
-    adduser -S -H -s /bin/bash -u 2000 -D -g 2000 elasticsearch && \
-    chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/ && \
+    addgroup -g 2000 tpot && \
+    adduser -S -H -s /bin/bash -u 2000 -D -g 2000 tpot && \
+    chown -R tpot:tpot /usr/share/elasticsearch/ && \
     ## kibana
     sed -i 's/#server.basePath: ""/server.basePath: "\/kibana"/' /usr/share/kibana/config/kibana.yml && \
     sed -i 's/#kibana.defaultAppId: "discover"/kibana.defaultAppId: "dashboards"/' /usr/share/kibana/config/kibana.yml && \
     sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/' /usr/share/kibana/config/kibana.yml && \
     sed -i 's/#elasticsearch.url: "http:\/\/localhost:9200"/elasticsearch.url: "http:\/\/elasticsearch:9200"/' /usr/share/kibana/config/kibana.yml && \
     /usr/share/kibana/bin/kibana 2>&1 | grep -m 1 "Optimization of bundles" && \
-    addgroup -g 2000 kibana && \
-    adduser -S -H -s /bin/bash -u 2000 -D -g 2000 kibana && \
-chown -R kibana:kibana /usr/share/kibana/ && \
+    chown -R kibana:kibana /usr/share/kibana/ && \
 # Clean up
     rm -rf /root/* && \
     apt-get purge wget git -y && \
@@ -79,7 +77,7 @@ chown -R kibana:kibana /usr/share/kibana/ && \
 
 #start elk
 CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
-USER kibana
+USER tpot
 CMD ["/usr/share/kibana/bin/kibana"]
-USER elasticsearch
+USER tpot
 CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
