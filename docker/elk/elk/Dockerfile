@@ -2,7 +2,7 @@ FROM alpine
 MAINTAINER MO
 
 # Include dist
-ADD dist/ /root/dist/
+ADD disk/ /root/dist/
 
 # Setup env and apt
 RUN apt-get update -y && \
