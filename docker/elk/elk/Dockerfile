@@ -22,7 +22,7 @@ RUN apk -U upgrade && \
     mkdir -p /usr/share/logstash/ && \
     wget https://artifacts.elastic.co/downloads/logstash/logstash-5.6.9.tar.gz && \
     wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN.tar.gz && \
-    tar xvfz logstash-5.6.9.tar.gz --strip-components=1 -C /usr/share/logstash/ && \
+    tar xvfz logstash-5.6.9.tar.gz --strip-components=1 -C /usr/share/logstash/ > /dev/null && \
     /usr/share/logstash/bin/logstash-plugin install logstash-filter-translate && \
     /usr/share/logstash/bin/logstash-plugin install logstash-output-syslog && \
     tar xvfz GeoLite2-ASN.tar.gz --strip-components=1 -C /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-filter-geoip-4.3.1-java/vendor/ && \
@@ -69,10 +69,8 @@ RUN apk -U upgrade && \
     /usr/share/kibana/bin/kibana 2>&1 | grep -m 1 "Optimization of bundles" && \
     chown -R tpot:tpot /usr/share/kibana/ && \
 # Clean up
-    rm -rf /root/* && \
-    apt-get purge wget git -y && \
-    apt-get autoremove -y && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    apk del wget && \
+    rm -rf /root/*
     
 
 #start elk
