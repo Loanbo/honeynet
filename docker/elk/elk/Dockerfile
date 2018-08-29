@@ -14,7 +14,7 @@ RUN apk -U upgrade && \
     cd /root/dist/ && \
     mkdir -p /usr/share/elasticsearch/ && \
     wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.9.tar.gz && \
-    tar xvfz elasticsearch-5.6.9.tar.gz --strip-components=1 -C /usr/share/elasticsearch/ && \
+    tar xvfz elasticsearch-5.6.9.tar.gz --strip-components=1 -C /usr/share/elasticsearch/ > /dev/null && \
 
    ## logstash
     git clone --depth=1 https://github.com/dtag-dev-sec/listbot /etc/listbot && \
@@ -29,7 +29,7 @@ RUN apk -U upgrade && \
   ## kibana
     mkdir -p /usr/share/kibana/ && \
     wget https://artifacts.elastic.co/downloads/kibana/kibana-5.6.9-linux-x86_64.tar.gz && \
-    tar xvfz kibana-5.6.9-linux-x86_64.tar.gz --strip-components=1 -C /usr/share/kibana/ && \
+    tar xvfz kibana-5.6.9-linux-x86_64.tar.gz --strip-components=1 -C /usr/share/kibana/ > /dev/null && \
     rm /usr/share/kibana/node/bin/node && \
     rm /usr/share/kibana/node/bin/npm && \
     ln -s /usr/bin/node /usr/share/kibana/node/bin/node && \
@@ -44,7 +44,7 @@ RUN apk -U upgrade && \
     ## logstash
     mkdir -p /etc/logstash/conf.d && \
     cp logstash.conf /etc/logstash/conf.d/ && \
-    cp elasticsearch-template-es5x.json /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-output-elasticsearch-7.4.2-java/lib/logstash/outputs/elasticsearch/ && \
+    cp elasticsearch-template-es5x.json /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-output-elasticsearch-7.4.2-java/lib/logstash/outputs/elasticsearch/ > /dev/null && \
 
    ## kibana
     cd /root/dist/ && \
@@ -67,7 +67,7 @@ RUN apk -U upgrade && \
     sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/' /usr/share/kibana/config/kibana.yml && \
     sed -i 's/#elasticsearch.url: "http:\/\/localhost:9200"/elasticsearch.url: "http:\/\/elasticsearch:9200"/' /usr/share/kibana/config/kibana.yml && \
     /usr/share/kibana/bin/kibana 2>&1 | grep -m 1 "Optimization of bundles" && \
-    chown -R kibana:kibana /usr/share/kibana/ && \
+    chown -R tpot:tpot /usr/share/kibana/ && \
 # Clean up
     rm -rf /root/* && \
     apt-get purge wget git -y && \
