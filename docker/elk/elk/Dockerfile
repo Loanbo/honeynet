@@ -65,7 +65,6 @@ RUN apk -U upgrade && \
     sed -i 's/#server.basePath: ""/server.basePath: "\/kibana"/' /usr/share/kibana/config/kibana.yml && \
     sed -i 's/#kibana.defaultAppId: "discover"/kibana.defaultAppId: "dashboards"/' /usr/share/kibana/config/kibana.yml && \
     sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/' /usr/share/kibana/config/kibana.yml && \
-    sed -i 's/#elasticsearch.url: "http:\/\/localhost:9200"/elasticsearch.url: "http:\/\/elasticsearch:9200"/' /usr/share/kibana/config/kibana.yml && \
     /usr/share/kibana/bin/kibana 2>&1 | grep -m 1 "Optimization of bundles" && \
     chown -R tpot:tpot /usr/share/kibana/ && \
 # Clean up
@@ -75,7 +74,5 @@ RUN apk -U upgrade && \
 
 #start elk
 CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
-USER tpot
-CMD ["/usr/share/kibana/bin/kibana"]
 USER tpot
 CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
