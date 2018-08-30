@@ -71,9 +71,12 @@ RUN apk -U upgrade && \
     apk del wget && \
     rm -rf /root/*
     
+# Healthcheck
+HEALTHCHECK --retries=10 CMD echo `netstat -luntp` | grep 9200 | grep | 5601 | grep 3520 > /dev/null; if [ 0 != $? ]; then exit 1; fi;
+
 
 #start elk
+CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
 USER tpot
 CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
-CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
 CMD ["/usr/share/kibana/bin/kibana"]
