@@ -73,6 +73,7 @@ RUN apk -U upgrade && \
     
 
 #start elk
-CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
 USER tpot
 CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
+CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
+CMD ["/usr/share/kibana/bin/kibana"]
