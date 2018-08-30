@@ -76,7 +76,6 @@ HEALTHCHECK --retries=10 CMD echo `netstat -luntp` | grep 9200 | grep | 5601 | g
 
 
 #start elk
-CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
-USER tpot
 CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
+CMD /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf
 CMD ["/usr/share/kibana/bin/kibana"]
