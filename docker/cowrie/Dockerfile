@@ -38,6 +38,7 @@ RUN apk -U --no-cache add \
     cd cowrie && \
     mkdir -p log && \
     pip install --upgrade pip && \
+    pip instatll py-bcrypt &&\
     pip install --upgrade -r requirements.txt && \
 
 # Setup configs
@@ -73,4 +74,4 @@ RUN apk -U --no-cache add \
 ENV PYTHONPATH /home/cowrie/cowrie:/home/cowrie/cowrie/src
 WORKDIR /home/cowrie/cowrie
 USER cowrie:cowrie
-CMD ["/home/cowrie/cowrie/bin/cowrie", "start"]
+CMD ["/usr/bin/twistd", "--nodaemon", "-y", "cowrie.tac", "--pidfile", "/tmp/cowrie/cowrie.pid", "cowrie"]
