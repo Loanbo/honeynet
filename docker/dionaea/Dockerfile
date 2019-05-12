@@ -5,9 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ADD dist/ /root/dist/
 
 #change timezone
-RUN apk add tzdata && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime  && \
-    echo "Asia/Shanghai" > /etc/timezone
+RUN  cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # Install dependencies and packages
 RUN apt-get update -y && \
