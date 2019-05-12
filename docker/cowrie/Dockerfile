@@ -43,9 +43,8 @@ RUN apk -U --no-cache add \
 # Setup configs
     setcap cap_net_bind_service=+ep /usr/bin/python2.7 && \
     cp /root/dist/userdb.txt /home/cowrie/cowrie/data/userdb.txt && \
-    cp /root/dist/base.py /home/cowrie/cowrie/src/cowrie/commands/base.py && \
+    sed "s/utcnow()/utc()/" /home/cowrie/cowrie/src/cowrie/commands/base.py && \
     cp /root/dist/cowrie.cfg /home/cowrie/cowrie/cowrie.cfg && \
-    cp /root/dist/output.py /home/cowrie/cowrie/src/cowrie/core/output.py &&\
     chown cowrie:cowrie -R /home/cowrie/* /usr/lib/python2.7/site-packages/twisted/plugins && \
 
 # Start Cowrie once to prevent dropin.cache errors upon container start caused by read-only filesystem
