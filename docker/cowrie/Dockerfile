@@ -43,7 +43,7 @@ RUN apk -U --no-cache add \
 # Setup configs
     setcap cap_net_bind_service=+ep /usr/bin/python2.7 && \
     cp /root/dist/userdb.txt /home/cowrie/cowrie/etc/userdb.example && \
-    sed "s/utcnow()/utc()/" /home/cowrie/cowrie/src/cowrie/commands/base.py && \
+    sed "s/utcnow()/utc()/" /home/cowrie/cowrie/src/cowrie/commands/base.py > /dev/null && \
     cp /root/dist/cowrie.cfg /home/cowrie/cowrie/cowrie.cfg && \
     chown cowrie:cowrie -R /home/cowrie/* /usr/lib/python2.7/site-packages/twisted/plugins && \
 
@@ -73,4 +73,4 @@ RUN apk -U --no-cache add \
 ENV PYTHONPATH /home/cowrie/cowrie:/home/cowrie/cowrie/src
 WORKDIR /home/cowrie/cowrie
 USER cowrie:cowrie
-CMD ["/usr/bin/twistd", "--nodaemon", "-y", "cowrie.tac", "--pidfile", "/tmp/cowrie/cowrie.pid", "cowrie"]
+CMD ["/home/cowrie/cowrie/bin/cowrie", "start"]
