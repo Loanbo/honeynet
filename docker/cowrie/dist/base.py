@@ -610,7 +610,7 @@ class command_date(HoneyPotCommand):
 
     def call(self):
         time = datetime.datetime.now()
-        self.write('{0}\n'.format(time.strftime("%a %b %d %H:%M:%S UTC %Y")))
+        self.write('{0}\n'.format(time.strftime("%a %b %d %H:%M:%S CST %Y")))
 
 
 commands['/bin/date'] = command_date
