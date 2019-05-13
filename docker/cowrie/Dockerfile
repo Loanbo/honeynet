@@ -38,7 +38,7 @@ RUN apk -U --no-cache add \
     cd cowrie && \
     mkdir -p log && \
     pip install --upgrade pip && \
-    pip instatll py-bcrypt &&\
+    pip install py-bcrypt &&\
     pip install --upgrade -r requirements.txt && \
 
 # Setup configs
