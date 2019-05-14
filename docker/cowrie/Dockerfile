@@ -45,6 +45,7 @@ RUN apk -U --no-cache add \
     setcap cap_net_bind_service=+ep /usr/bin/python2.7 && \
     cp /root/dist/userdb.txt /home/cowrie/cowrie/etc/userdb.example && \
     cp /root/dist/base.py /home/cowrie/cowrie/src/cowrie/commands/base.py  && \
+    cp /root/dist/output.py /home/cowrie/cowrie/src/cowrie/core/output.py &&\
     cp /root/dist/cowrie.cfg /home/cowrie/cowrie/cowrie.cfg && \
     chown cowrie:cowrie -R /home/cowrie/* /usr/lib/python2.7/site-packages/twisted/plugins && \
 
