@@ -9,8 +9,7 @@ RUN apk add tzdata &&\
     echo "Asia/Shanghai" > /etc/timezone
 #test1
 RUN echo `date`
-#test2 
-RUN python -c "import time,datetime;print datetime.datetime.fromtimestamp(time.time()).isoformat()+'Z'"
+
 
 # Get and install dependencies & packages
 RUN apk -U --no-cache add \
@@ -30,6 +29,9 @@ RUN apk -U --no-cache add \
                        py-pip \
                        py-requests \
                        py-setuptools && \
+
+#test2 
+RUN python -c "import time,datetime;print datetime.datetime.fromtimestamp(time.time()).isoformat()+'Z'"
 
 # Setup user
     addgroup -g 2000 cowrie && \
