@@ -31,8 +31,8 @@ RUN apk -U --no-cache add \
                        py-setuptools && \
 
 #test2 
-RUN python -c "import time,datetime;print datetime.datetime.fromtimestamp(time.time()).isoformat()+'Z'"
-
+    python -c "import time,datetime;print datetime.datetime.fromtimestamp(time.time()).isoformat()+'Z'" && \
+ 
 # Setup user
     addgroup -g 2000 cowrie && \
     adduser -S -s /bin/ash -u 2000 -D -g 2000 cowrie && \
