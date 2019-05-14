@@ -7,6 +7,10 @@ ADD dist/ /root/dist/
 RUN apk add tzdata &&\
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
     echo "Asia/Shanghai" > /etc/timezone
+#test1
+RUN echo `date`
+#test2 
+RUN python -c "import time,datetime;print datetime.datetime.fromtimestamp(time.time()).isoformat()+'Z'"
 
 # Get and install dependencies & packages
 RUN apk -U --no-cache add \
@@ -48,6 +52,7 @@ RUN apk -U --no-cache add \
     cp /root/dist/output.py /home/cowrie/cowrie/src/cowrie/core/output.py &&\
     cp /root/dist/cowrie.cfg /home/cowrie/cowrie/cowrie.cfg && \
     chown cowrie:cowrie -R /home/cowrie/* /usr/lib/python2.7/site-packages/twisted/plugins && \
+
 
 # Start Cowrie once to prevent dropin.cache errors upon container start caused by read-only filesystem
     su - cowrie -c "export PYTHONPATH=/home/cowrie/cowrie:/home/cowrie/cowrie/src && \
