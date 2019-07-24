@@ -24,4 +24,4 @@ RUN sed -i 's|msttcore-fonts-installer ||' /Veil/config/setup.sh
 RUN cd Veil/ && xvfb-run ./config/setup.sh --force --silent
 
 ADD veil /usr/local/bin/
-CMD ["veil"]
+CMD ["/usr/local/bin/veil"]
